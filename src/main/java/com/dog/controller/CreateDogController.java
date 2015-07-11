@@ -19,6 +19,12 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.dog.repository.DogRepository;
 
+/**
+ * 
+ * @author mariamdost
+ * Controller that controls the dog class.
+ *
+ */
 @Controller
 public class CreateDogController {
 
