@@ -11,6 +11,11 @@
  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+ 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>  
+ 
+ <script>
+ 
+ </script>
  
  <style>
  .navbar{
@@ -34,7 +39,7 @@
 				<li class="active"><a href="/controller">Home</a></li>
 				<li><a href="createDog.html">Register Dog</a></li>
 				<li><a href="dogs">List of Dogs</a></li>
-				<li><a href="map.html">Maps</a></li>
+				<li><a href="map">Maps</a></li>
 				</ul>
 			</div>
 		</div>

@@ -3,7 +3,10 @@ package com.dog.controller;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -15,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.dog.repository.DogRepository;
@@ -51,18 +55,21 @@ public class CreateDogController {
 	}
 	
 	@RequestMapping(value ="dogs", method = RequestMethod.GET)
-	public String getAllDogs(Model model){
+	public String getAllDogs(Model model, HttpServletResponse response){
 		List<CreateDogs> getDogs = repo.getAll();
 		
 		if(getDogs.size() != 0){
 			for(CreateDogs i : getDogs){
 				System.out.println(i.getName()+" "+i.getId());
 			}
+			response.setStatus(HttpServletResponse.SC_OK);
 		}else{
 			System.out.println("its null!!!!!");
+			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
 		}
+		model.addAttribute("message", "why aren't you printing");
 		model.addAttribute("listOfDogs", getDogs);
-		
+
 		return "displayInfo";
 		
 	}
@@ -74,6 +81,22 @@ public class CreateDogController {
 		System.out.println(dog.getName());
 		model.addAttribute("dogId", dog);
 		return "displayInfo";
+	}
+	
+	@RequestMapping(value = "/map", method = RequestMethod.GET)
+	public String displayMap(ModelMap model, HttpServletResponse response){
+		List<CreateDogs> getDogs = repo.getAll();
+		
+		if(getDogs.size() != 0){
+			for(CreateDogs i : getDogs){
+				System.out.println(i.getName()+" "+i.getId());
+			}
+			response.setStatus(HttpServletResponse.SC_OK);
+		}
+		model.addAttribute("listOfDogs", getDogs);
+
+		
+		return "map";
 	}
 	
 }

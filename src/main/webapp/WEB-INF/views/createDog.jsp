@@ -39,7 +39,7 @@
 				<li><a href="/controller">Home</a></li>
 				<li class="active"><a href="createDog.html">Register Dog</a></li>
 				<li><a href="dogs">List of Dogs</a></li>
-				<li><a href="#">Maps</a></li>
+				<li><a href="map">Maps</a></li>
 				</ul>
 			</div>
 		</div>
