@@ -40,4 +40,9 @@ public class HomeController {
 		return "displayInfo";
 	}
 	
+	@RequestMapping(value = "/algorithm", method = RequestMethod.GET)
+	public String displayAlgorithmMap(){
+		return "algorithm";
+	}
+	
 }

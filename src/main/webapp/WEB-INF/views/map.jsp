@@ -105,6 +105,7 @@
 				<li><a href="createDog.html">Register Dog</a></li>
 				<li><a href="dogs">List of Dogs</a></li>
 				<li class="active"><a href="map.html">Maps</a></li>
+				<li><a href="algorithm.html">Algorithm</a></li>
 				</ul>
 			</div>
 		</div>

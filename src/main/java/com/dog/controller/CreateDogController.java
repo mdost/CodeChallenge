@@ -1,6 +1,12 @@
 package com.dog.controller;
 
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.Random;
+import java.util.Set;
 import java.util.concurrent.atomic.AtomicLong;
 
 import javax.servlet.http.HttpServletResponse;
@@ -79,7 +85,9 @@ public class CreateDogController {
 		System.out.println(value);
 		CreateDogs dog = repo.findById(value);
 		System.out.println(dog.getName());
+		
 		model.addAttribute("dogId", dog);
+		
 		return "displayInfo";
 	}
 	
@@ -97,6 +105,101 @@ public class CreateDogController {
 
 		
 		return "map";
+	}
+	
+	@RequestMapping(value = "dogClusters", method = RequestMethod.GET)
+	public String kMeanClustering(@RequestParam("k") int clusters, ModelMap model, HttpServletResponse response){
+		List<CreateDogs> getDogs = repo.getAll();
+		
+		if(getDogs.size() != 0){
+			int length= getDogs.size();
+			int minValue= getDogs.get(0).getWeight();
+			int maxValue = getDogs.get(0).getWeight();
+			int[][] clusterArray = new int[clusters][length];
+			for(int q=0; q<clusters; q++){
+				for(int y=0; y< length; y++){
+					clusterArray[q][y]=-1;
+					System.out.println(clusterArray[q][y]);
+				}
+			}
+			//choose k initial cluster centers
+			//find min and max value in the list of dogs
+			for(CreateDogs i : getDogs){				
+				if(i.getWeight() < minValue){
+					minValue= i.getWeight();
+				}
+				
+				if(i.getWeight() > maxValue){
+					maxValue= i.getWeight();
+				}
+			}
+			System.out.println(minValue);
+			System.out.println(maxValue);
+			
+			//generate k random cluster centers in the range of the list
+			int[] k = new int[clusters];
+			Random rand = new Random();
+			
+			for(int i=0; i<clusters; i++){
+				k[i] = rand.nextInt((maxValue-minValue)+1);
+				System.out.println(k[i]);
+			}
+			
+			//for each point assign it to the cluster with the nearest distance
+			double center, center2;
+			
+			for(CreateDogs i: getDogs){
+				
+				double v = Math.pow(i.getWeight()-k[0], 2);
+				center=  Math.sqrt(v);
+//				System.out.println("first_center: "+center+" weight: "+i.getWeight());
+				int flag =0;
+				
+				for(int n=1; n< k.length;n++){
+					double value = Math.pow(i.getWeight()-k[n], 2);
+					center2=  Math.sqrt(value);
+					
+//					System.out.println("center2: "+center2);
+					if(center2 < center){
+//						System.out.println("center1: "+center);
+
+						center= center2;
+						flag=n;
+//						System.out.println("final_center1: "+center);
+
+					}
+				}
+				
+				System.out.println(flag+" centerPt= "+center);
+				for(int o=0; o<k.length; o++){
+		        	 if(flag == o){
+		        		 for(int b=0; b< length-1;b++){
+		        			 if(clusterArray[o][b] == -1){
+		        				 clusterArray[o][b]= i.getId().intValue();
+		        				 System.out.println(o+"b: "+b+" value= "+clusterArray[o][b]);
+		        				 break;
+		        			 }
+		        		 }
+		        	 }
+		         }
+				
+				System.out.println("------------------end-------------");
+			}
+			
+			//
+		      System.out.println("The real cluster array---------------------");
+		     
+		      for(int h=0; h<clusters; h++){
+		    	  for(int v=0; v<length; v++){
+		    		  System.out.println(clusterArray[h][v]);
+		    	  }
+		      }
+		      
+			model.addAttribute("clusteredPts", clusterArray);
+			response.setStatus(HttpServletResponse.SC_OK);
+		}
+		
+		return "algorithm";
 	}
 	
 }

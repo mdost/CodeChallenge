@@ -14,10 +14,19 @@
  	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>  
  
  <script>
- 
+ $('#nav').affix({
+     offset: {
+       top: 0
+     }
+});	
  </script>
  
  <style>
+ #nav.affix {
+    position: fixed;
+    top: 0;
+    width: 100%
+}
  .navbar{
  	background-color: transparent;
  	background: transparent;
@@ -40,6 +49,7 @@
 				<li><a href="createDog.html">Register Dog</a></li>
 				<li><a href="dogs">List of Dogs</a></li>
 				<li><a href="map">Maps</a></li>
+				<li><a href="algorithm.html">Algorithm</a></li>
 				</ul>
 			</div>
 		</div>

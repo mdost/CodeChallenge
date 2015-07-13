@@ -40,6 +40,7 @@
 				<li class="active"><a href="createDog.html">Register Dog</a></li>
 				<li><a href="dogs">List of Dogs</a></li>
 				<li><a href="map">Maps</a></li>
+				<li><a href="algorithm.html">Algorithm</a></li>
 				</ul>
 			</div>
 		</div>
@@ -47,7 +48,7 @@
 	
 	<div class="container" style="margin-top: 100px;">
 		<div class="row">
-			<div class="col-md-8 col-md-offset-2" style="">
+			<div class="col-md-8 col-md-offset-2">
 				<c:if test="${not empty message}">
 				<div class="alert alert-success" id="msgAlert">
 					<a href="#" class="close" onclick="$('#msgAlert').hide()">&times;</a>

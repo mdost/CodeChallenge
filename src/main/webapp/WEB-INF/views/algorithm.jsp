@@ -17,18 +17,8 @@
  	
  <style>
  #id{
-    border-left: 0;
-    outline: none;
-    box-shadow: none;
-}
-
-.form-control:focus {
-	outline: none;
-	border-color: lightgrey !important;
-	-webkit-box-shadow: none!important;
-	-moz-box-shadow: none!important;
-	box-shadow: none!important;
-}
+ 	padding-left: 30px;
+ }
  </style>
 </head>
 <body>
@@ -43,62 +33,59 @@
 				<ul class="nav navbar-nav">
 				<li><a href="/controller">Home</a></li>
 				<li><a href="createDog.html">Register Dog</a></li>
-				<li class="active"><a href="dogs">List of Dogs</a></li>
+				<li><a href="dogs">List of Dogs</a></li>
 				<li><a href="map.html">Maps</a></li>
-				<li><a href="algorithm.html">Algorithm</a></li>
+				<li class="active"><a href="algorithm.html">Algorithm</a></li>
 				</ul>
 			</div>
 		</div>
 	</nav>
 	
-	<div class="container" style="margin-top: 100px;">
-		<form:form action="dogs" method="post">
-			<div class="row">
-				<div class="col-md-3">					
-					<div class="input-group">
-					<div class="input-group-addon" style="background-color: transparent; border-right:0 solid transparent;"><span class="glyphicon glyphicon-search"></span></div>
-					
-					<input type="text" class="form-control" placeholder="search by ID #" name="id" id="id" />
-					<div class="input-group-btn">
-					<input type="submit" class="btn btn-info" value="Go" />
-					</div>	
-					</div>				
-				</div>
-					<br><br>
+	<div class="container" style="margin-top: 100px; height: 100%;">
+		<div class="row">
+			<div style="display: block; text-align: center;">
+			<h3>K-Means Clustering Algorithm</h3><br>
+			<p>Please input the number of clusters you would like to have:</p>
 			</div>
-				
-		</form:form>
 		
+			<form:form action="dogClusters" method="get">
+ 				<div class="col-md-2 col-md-offset-5 input-group">
+ 					<input type="text" class="form-control" placeholder="# of clusters" name="k" id="k" />
+ 					<span class="input-group-btn"><input type="submit" class="btn btn-info btn-block" value="Go" /></span>
+ 				</div>					
+			</form:form>
 		
-		<fieldset style="text-align: center;">
-		<legend><strong>List of all dogs</strong></legend></fieldset>
+		</div>
+		<br><br>
+		
+		<c:if test="${not empty clusteredPts}">
+			<fieldset style="text-align: center;">
+		<legend><strong>Clustered Dogs</strong></legend></fieldset>
 		<table class="table table-striped">
 			<thead>
 				<tr>
 				<th>ID</th>
-				<th>Name</th>
-				<th>Heartbeat (b/min)</th>
-				<th>Weight (lb)</th>
-				<th>Temperature (C)</th>
-				<th>Lat</th>
-				<th>Long</th>
-				<th>Edit/Delete</th>
+				<th>Cluster</th>
 				</tr>
 			</thead>
-			<c:forEach items="${listOfDogs}" var="listDog">
-				<tr>
-					<td><c:out value="${listDog.getId()}"/></td>
-					<td><c:out value="${listDog.getName()}"/></td>
-					<td><c:out value="${listDog.getHeartbeat()}"/></td>
-					<td><c:out value="${listDog.getWeight()}"/></td>
-					<td><c:out value="${listDog.getTemperature()}"/></td>
-					<td><c:out value="${listDog.getLat()}"/></td>
-					<td><c:out value="${listDog.getLong()}"/></td>
-					<td><button class="btn-info">Edit</button><button class="btn-danger" style="margin-left: 5px;">Delete</button></td>
-				</tr>
+			<c:set var="count" value="1" scope="page" />
+			<c:forEach var="row" items="${clusteredPts}">
+				<c:forEach var="column" items="${row}">
+					<c:if test="${column != -1}">
+					<tr>
+					<td>${column}</td>
+					<td>${count}</td>
+					</tr>
+					</c:if>
+				</c:forEach>
+				<c:set var="count" value="${count + 1}" scope="page"/>
 			</c:forEach>
-			
 		</table>
+		</c:if>
+			
+	</div>
+	
+	<div class="container">
 		<footer style="margin-top: 40px; height:100%; width:100%; positon:absolute; text-align:center;">
 			<span class="glyphicon glyphicon-copyright-mark"></span> copyright Hippity Hop Inc. | <a href="#">Financials</a> | <a href="#">Legal Statement</a> | <a href="#">Developers</a> | <a href="#">Media</a>
 		</footer>
