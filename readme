@@ -1,0 +1,15 @@
+ReadMe
+
+To deploy the app, please download Spring Tool Suite
+- clone the project into your directory from github using the following URL:
+https://github.com/mdost/CodeChallenge.git
+
+- open Spring Tool Suite and go to File->New->Other and then select import existing project from workspace.
+- select the project and click finish.
+- the project should be added into your workspace. 
+
+- To run the project, right-click the project and select "run as server" and select pivotal-tc-developer server.
+
+The project should open window that will direct you to the home page of the website. Copy the URL and open your browser and input the URL and the webpage should be displayed in your broswer. 
+
+By: Mariam Dost
