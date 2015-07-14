@@ -269,14 +269,14 @@ public class CreateDogController {
 			
 		for(CreateDogs i: getDogs){
 			//calculate the distance between the centroid (center) point choosen and each point.
-			double v = Math.pow(i.getWeight()-k[0], 2);
-			center=  Math.sqrt(v);
+//			double v = Math.pow(i.getWeight()-k[0], 2);
+			center=  Math.abs(i.getWeight()-k[0]);
 			int flag =0;	//initially flag set to cluster 0
 				
 			//check which centroid does the point in the dataset has closest distance.
 			for(int n=1; n< k.length;n++){
-				double value = Math.pow(i.getWeight()-k[n], 2);
-				center2=  Math.sqrt(value);
+//				double value = Math.pow(i.getWeight()-k[n], 2);
+				center2=  Math.abs(i.getWeight()-k[n]);
 				
 				if(center2 < center){
 					center= center2;
