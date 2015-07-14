@@ -43,6 +43,12 @@
 	
 	<div class="container" style="margin-top: 100px; height: 100%;">
 		<div class="row">
+			<c:if test="${not empty deletedDog}">
+				<div class="alert alert-success" id="deleted">
+				<a href="#" class="close" onclick="$('#deleted').hide()">&times;</a>
+				<strong>Success: </strong>${deletedDog}
+				</div>
+			</c:if>
 			<div style="display: block; text-align: center;">
 			<h3>K-Means Clustering Algorithm</h3><br>
 			<p>Please input the number of clusters you would like to have:</p>
@@ -65,15 +71,27 @@
 			<thead>
 				<tr>
 				<th>ID</th>
+				<th>Name</th>
+				<th>Temperature</th>
+				<th>Heartbeat</th>
+				<th>Lat</th>
+				<th>Long</th>
+				<th>Weight</th>
 				<th>Cluster</th>
 				</tr>
 			</thead>
 			<c:set var="count" value="1" scope="page" />
 			<c:forEach var="row" items="${clusteredPts}">
 				<c:forEach var="column" items="${row}">
-					<c:if test="${column != -1}">
+					<c:if test="${column != null}">
 					<tr>
-					<td>${column}</td>
+					<td>${column.getId()}</td>
+					<td>${column.getName()}</td>
+					<td>${column.getTemperature()}</td>
+					<td>${column.getHeartbeat()}</td>
+					<td>${column.getLat()}</td>
+					<td>${column.getLong()}</td>
+					<td>${column.getWeight()}</td>
 					<td>${count}</td>
 					</tr>
 					</c:if>
@@ -86,7 +104,7 @@
 	</div>
 	
 	<div class="container">
-		<footer style="margin-top: 40px; height:100%; width:100%; positon:absolute; text-align:center;">
+		<footer style="padding-bottom: 20px; margin-top: 40px; height:100%; width:100%; positon:absolute; text-align:center;">
 			<span class="glyphicon glyphicon-copyright-mark"></span> copyright Hippity Hop Inc. | <a href="#">Financials</a> | <a href="#">Legal Statement</a> | <a href="#">Developers</a> | <a href="#">Media</a>
 		</footer>
 	</div>

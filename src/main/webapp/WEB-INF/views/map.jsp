@@ -16,7 +16,7 @@
  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
  	<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>  
-
+	<%response.setIntHeader("Refresh", 60); %>
 <script>
 	/* $.ajax({
 		type: "GET",
@@ -32,6 +32,47 @@
 	}); */
 	
 	function loadMap() {
+		
+		<c:choose>
+			<c:when test="${not empty filterDogLocation}">
+				var getDog = new Object();
+				
+				getDog.name = '${filterDogLocation.getName()}';
+				getDog.id = '${filterDogLocation.getId()}';
+				getDog.lat = '${filterDogLocation.getLat()}';
+				getDog.lon = '${filterDogLocation.getLong()}';
+				getDog.weight = '${filterDogLocation.getWeight()}';
+				getDog.temperature = '${filterDogLocation.getTemperature()}';
+			    getDog.heartbeat = '${filterDogLocation.getHeartbeat()}';
+				
+			    var latLong = new google.maps.LatLng(getDog.lat, getDog.lon);
+			    
+				var info = new google.maps.InfoWindow();
+
+				var options = {
+						 zoom: 18,
+						 center: latLong,
+						 mapTypeId: google.maps.MapTypeId.HYBRID
+					};
+					
+				var mapLocal = new google.maps.Map(document.getElementById("map_container"),options);
+			
+				var markerpt = new google.maps.Marker({
+		      		position: latLong, 
+		      		map: mapLocal, 
+		      		title: getDog.name,
+		    	}); 
+				
+				var content="Name: "+getDog.name+"\nHeartbeat: "+getDog.heartbeat+"\nTemperature: "+getDog.temperature+"\nWeight: "+getDog.weight;
+		    	
+		    	 google.maps.event.addListener(markerpt, 'click', function() {
+		    		 info.close();
+		    		 info.setContent(content);
+		    		 info.open(mapLocal,markerpt);
+		    	  }); 
+			    
+			</c:when>
+			<c:otherwise>
 		var dogs = new Array();
 
 		<c:forEach items="${listOfDogs}" var="item">
@@ -76,6 +117,8 @@
 	    	  }); 
 	    	
 		});
+		</c:otherwise>
+		</c:choose>
 		
 	 }
 
@@ -88,6 +131,19 @@
 	height: 500px;
 }
 
+ #id{
+    border-left: 0;
+    outline: none;
+    box-shadow: none;
+}
+
+.form-control:focus {
+	outline: none;
+	border-color: lightgrey !important;
+	-webkit-box-shadow: none!important;
+	-moz-box-shadow: none!important;
+	box-shadow: none!important;
+}
 </style>
 
 </head>
@@ -112,16 +168,45 @@
 	</nav>
 	
 	<div class="container" style="margin-top: 100px;">
-		<h3 style="display: block; text-align: center;">Maps</h3>
-		
+		<c:if test="${not empty error}">
+		<div class="row">
+			<div class="col-md-5 col-md-offset-3">
+				<div class="alert alert-danger" id="msgAlert">
+				<a href="#" class="close" onclick="$('#msgAlert').hide()">&times;</a>
+				<strong>Error: </strong>${error}
+				</div>
+			</div>
+		</div>
+		</c:if>
+		<div class="row">
+			<div class="col-md-3" style="margin-top: 23px;">
+				<form:form action="MapById" method="post">	
+					<div class="input-group">
+					<div class="input-group-addon" style="background-color: transparent; border-right:0 solid transparent;"><span class="glyphicon glyphicon-search"></span></div>
+					
+					<input type="text" class="form-control" placeholder="search by ID #" name="id" id="id" />
+					<div class="input-group-btn">
+					<input type="submit" class="btn btn-info" value="Go" />
+					</div>	
+					</div>				
+				</form:form>			
+			</div>
+			
+			<div class="col-md-8">
+				<h3 style="display: block; text-align: center;">Maps</h3>
+			</div>
+			
+		</div>
+		<hr></hr>
 		<div class="row">
 <!-- 			<div class="col-md-4"><p>The map below shows where the location of all dogs</p></div>
- -->			<div class="col-md-8">
-				<p>The map below shows where the location of all dogs</p>
+ -->			<div class="col-md-12">
+				<p>The map below shows the location of all dogs registered into the system. If you would like to display a map for a specific dog, please enter the dogs ID #. </p>
 				<div id="map_container"></div>
 			</div>
 		</div>
-		<footer style="margin-top: 40px; height:100%; width:100%; positon:absolute; text-align:center;">
+		
+		<footer style="padding-bottom: 20px; margin-top: 40px; height:100%; width:100%; positon:absolute; text-align:center;">
 			<span class="glyphicon glyphicon-copyright-mark"></span> copyright Hippity Hop Inc. | <a href="#">Financials</a> | <a href="#">Legal Statement</a> | <a href="#">Developers</a> | <a href="#">Media</a>
 		</footer>
 	</div>

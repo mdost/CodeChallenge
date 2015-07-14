@@ -5,6 +5,9 @@ import java.io.Serializable;
 import org.springframework.data.neo4j.annotation.GraphId;
 import org.springframework.data.neo4j.annotation.NodeEntity;
 
+/** @author mariamdost
+ * Class for dogs that stores all information about dogs
+ */
 @NodeEntity
 public class CreateDogs implements Serializable{
 	/**

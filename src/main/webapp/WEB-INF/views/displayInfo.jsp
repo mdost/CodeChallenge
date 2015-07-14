@@ -14,7 +14,26 @@
  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
- 	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	
+<script>
+function submitForm() {
+    var name = jQuery("#id").val();
+
+    $.ajax({
+    	type: "GET",
+        url : "dogs/"+name,
+        contentType: "applicaton/json",
+        success : function(response) {
+            document.open();
+            document.write(response);
+            document.close();
+        }
+    });
+   
+}
+</script>
+
  <style>
  #id{
     border-left: 0;
@@ -52,24 +71,83 @@
 	</nav>
 	
 	<div class="container" style="margin-top: 100px;">
-		<form:form action="dogs" method="post">
+		<c:if test="${not empty error}">
+			<div class="alert alert-danger" id="msgAlert">
+				<a href="#" class="close" onclick="$('#msgAlert').hide()">&times;</a>
+				<strong>Error: </strong>${error}
+			</div>
+		</c:if>
+		<c:if test="${not empty deletedDog}">
+			<div class="alert alert-success" id="deleted">
+				<a href="#" class="close" onclick="$('#deleted').hide()">&times;</a>
+				<strong>Success: </strong>${deletedDog}
+			</div>
+		</c:if>
+		<c:if test="${not empty updatedDog}">
+			<div class="alert alert-success" id="updated">
+				<a href="#" class="close" onclick="$('#updated').hide()">&times;</a>
+				<strong>Success: </strong>${updatedDog.getName()} has been updated!
+			</div>
+		</c:if>
+		
+		
 			<div class="row">
 				<div class="col-md-3">					
 					<div class="input-group">
 					<div class="input-group-addon" style="background-color: transparent; border-right:0 solid transparent;"><span class="glyphicon glyphicon-search"></span></div>
 					
-					<input type="text" class="form-control" placeholder="search by ID #" name="id" id="id" />
+					<input type="text" class="form-control" placeholder="search by ID #" name="id" id="id"/>
 					<div class="input-group-btn">
-					<input type="submit" class="btn btn-info" value="Go" />
+					<input type="button" class="btn btn-info"  onclick="submitForm()" value="Go" />
 					</div>	
 					</div>				
 				</div>
 					<br><br>
 			</div>
+						
+		<c:choose>
+		<c:when test="${not empty dogId}">
+			<fieldset style="text-align: center;">
+		<legend><strong>Search Results</strong></legend></fieldset>
+		<table class="table table-striped">
+			<thead>
+				<tr>
+				<th>ID</th>
+				<th>Name</th>
+				<th>Heartbeat (b/min)</th>
+				<th>Weight (lb)</th>
+				<th>Temperature (C)</th>
+				<th>Lat</th>
+				<th>Long</th>
+				<th>Edit/Delete</th>
+				</tr>
+			</thead>
+			<tr>
+				<td><c:out value="${dogId.getId()}"/></td>
+				<td><c:out value="${dogId.getName()}"/></td>
+				<td><c:out value="${dogId.getHeartbeat()}"/></td>
+				<td><c:out value="${dogId.getWeight()}"/></td>
+				<td><c:out value="${dogId.getTemperature()}"/></td>
+				<td><c:out value="${dogId.getLat()}"/></td>
+				<td><c:out value="${dogId.getLong()}"/></td>
 				
-		</form:form>
-		
-		
+				<td>
+					<div class="row">
+					<div class="col-md-3">
+					<form:form action="edit" method="get">
+					<input type="hidden" name="dogID" value="${dogId.getId()}"/>
+					<input type="submit" class="btn-info" value="Edit" name="edit" id="edit"/>
+					</form:form></div>
+					
+					<div class="col-md-3"><form:form action="delete" method="get">
+					<input type="hidden" name="id" value="${dogId.getId()}"/>
+					<input type="submit" class="btn-danger"  value="Delete" name="delete" id="delete"/>
+					</form:form></div></div>
+				</td>				
+			</tr>
+			</table>
+		</c:when>
+		<c:when test="${not empty listOfDogs}">
 		<fieldset style="text-align: center;">
 		<legend><strong>List of all dogs</strong></legend></fieldset>
 		<table class="table table-striped">
@@ -94,12 +172,28 @@
 					<td><c:out value="${listDog.getTemperature()}"/></td>
 					<td><c:out value="${listDog.getLat()}"/></td>
 					<td><c:out value="${listDog.getLong()}"/></td>
-					<td><button class="btn-info">Edit</button><button class="btn-danger" style="margin-left: 5px;">Delete</button></td>
+					
+					
+					<td>
+					<div class="row">
+					<div class="col-md-3">
+					<form:form action="edit" method="get">
+					<input type="hidden" name="dogID" value="${listDog.getId()}"/>
+					<input type="submit" class="btn-info" value="Edit" name="edit" id="edit"/>
+					</form:form></div>
+					
+					<div class="col-md-3"><form:form action="delete" method="get">
+					<input type="hidden" name="id" value="${listDog.getId()}"/>
+					<input type="submit" class="btn-danger"  value="Delete" name="delete" id="delete"/>
+					</form:form></div></div>
+					</td>
 				</tr>
 			</c:forEach>
 			
 		</table>
-		<footer style="margin-top: 40px; height:100%; width:100%; positon:absolute; text-align:center;">
+		</c:when>
+		</c:choose>
+		<footer style="padding-bottom: 20px; margin-top: 40px; height:100%; width:100%; positon:absolute; text-align:center;">
 			<span class="glyphicon glyphicon-copyright-mark"></span> copyright Hippity Hop Inc. | <a href="#">Financials</a> | <a href="#">Legal Statement</a> | <a href="#">Developers</a> | <a href="#">Media</a>
 		</footer>
 	</div>

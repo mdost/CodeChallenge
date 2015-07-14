@@ -27,11 +27,11 @@
     top: 0;
     width: 100%
 }
- .navbar{
+ /* .navbar{
  	background-color: transparent;
  	background: transparent;
  	border-color: transparent;
- }
+ } */
  </style>
 </head>
 <body>
@@ -60,9 +60,9 @@
 			<div class="container">
 			 	<div class="row">
 			 		<div class="col-md-8 col-md-offset-2">
-						<h1 style="color: white; text-align: center; padding-top: 50px;">Hippity Hop</h1>
-						<p style="color: white; text-align: center;">The first indoor dog park in Calgary</p>
-						<a href="#create" class="glyphicon glyphicon-menu-down" style="font-size: 5em; color: white; display: block; text-align: center;" ></a>
+						<h1 style="color: white; text-align: center; padding-top: 150px;">Hippity Hop</h1>
+						<p style="font: 20px; color: white; text-align: center;">The first universal dog park!</p>
+						<a href="#create" class="glyphicon glyphicon-menu-down" style="padding-top: 160px; font-size: 5em; color: white; display: block; text-align: center;" ></a>
 					</div>
 				</div>
 			</div>
@@ -74,21 +74,28 @@
 	<div class="container-fluid">
 		<div id="create" class="jumbotron" style="padding: 0; width: 100%; height: 100%; background-color: transparent;">
 			<div class="row">
-				<div class="col-md-8 col-md-offset-2" style="text-align: center; display: block;">
+		
+				<div class="col-md-8 col-md-offset-1" style="text-align: center; display: block;">
 					<div style="margin-top: 150px; color: white;">
 					<h2>About</h2>
 					<p>Owners can leave their dogs at Hippity Hop, where dogs will be fed, washed, and groommed. In addition to this dogs can play with various toys available at Hippity Hop. </p>
 					<br><p>We offer a safe, reliable and fun environment for dogs to </p>
 					<button class="btn-success" onclick="location.href='createDog.html'">Register your dog</button>
+					<a href="#track" class="glyphicon glyphicon-menu-down" style="padding-top: 100px; font-size: 5em; color: white; display: block; text-align: center;" ></a>
+					
 					</div>
 				</div>
+				<div class="col-md-2" style="position: relative; margin-top: 150px;">
+					<img src="resources/images/dog2pic.png" width="200" height="336">
+				</div>
+		
 			</div>
 		</div>
-	
+		<hr></hr>
 	</div>
 	
 	<div class="container-fluid">
-		<div class="jumbotron" style="padding: 0; width: 100%; height: 100%; background-color: transparent;">
+		<div id="track" class="jumbotron" style="padding: 0; width: 100%; height: 100%; background-color: transparent;">
 			<div class="row">
 				<div class="col-md-8 col-md-offset-2" style="text-align: center; display: block;">
 					<div style="margin-top: 130px; color: white;">
@@ -98,34 +105,12 @@
 				</div>
 			</div>
 		</div>
-		<footer style="color: white; margin-top: 40px; height:100%; width:100%; positon:absolute; text-align:center;">
+	</div>
+	<div class="container">
+	<footer style="color: white; padding-bottom: 20px; display: block; text-align:center;">
 		<span class="glyphicon glyphicon-copyright-mark"></span> copyright Hippity Hop Inc. | <a href="#">Financials</a> | <a href="#">Legal Statement</a> | <a href="#">Developers</a> | <a href="#">Media</a>
 		</footer>
-	</div>
-<%-- <form:form action="controller/dog" method="post">
-	<p>Name: <input type="text" name="name" /></p>
-    <p>heartbeat: <input type="text" name="heartbeat" /></p>
-    <p>weight: <input type="text" name="weight" /></p>
-    <p>temperature: <input type="text" name="temperature" /></p>
-    <p>lat: <input type="text" name="lat" /></p>
-    <p>long: <input type="text" name="lon" /></p>
-
-    <input type="submit" value="Enter" />
-</form:form> --%>
-
-<%-- <form:form action="dogs" method="post">
-	<p>Id: <input type="text" name="id" id="id"/></p>
- <input type="submit" value="Enter" />
-</form:form>
-<button>hello</button>
- --%>
-<!-- <a href="getDogs">See entire list of dogs</a>
- --><%-- <P>  The time on the server is ${serverTime}. </P>
- --%>
- 
-<%--  <P>  The time on the server is ${getDog}. </P>
- --%>
- 	
+		</div>
  </div>
 </body>
 </html>

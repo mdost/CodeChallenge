@@ -6,7 +6,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-	<title>Register Dog</title>
+	<title>Edit Info</title>
 	<meta charset="utf-8">
   	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -37,7 +37,7 @@
 			<div>
 				<ul class="nav navbar-nav">
 				<li><a href="/controller">Home</a></li>
-				<li class="active"><a href="createDog.html">Register Dog</a></li>
+				<li><a href="createDog.html">Register Dog</a></li>
 				<li><a href="dogs">List of Dogs</a></li>
 				<li><a href="map">Maps</a></li>
 				<li><a href="algorithm.html">Algorithm</a></li>
@@ -50,29 +50,34 @@
 		<div class="row">
 			<div class="col-md-8 col-md-offset-2">
 				<c:if test="${not empty message}">
-				<div class="alert alert-success" id="msgAlert">
-					<a href="#" class="close" onclick="$('#msgAlert').hide()">&times;</a>
-					<strong>Success: </strong>${message}
-				</div></c:if>
+					<div class="alert alert-success" id="msgAlert">
+						<a href="#" class="close" onclick="$('#msgAlert').hide()">&times;</a>
+						<strong>Success: </strong>${message}
+					</div>
+				</c:if>
 				<fieldset class="fieldset">
-				<legend style="display: block; text-align: center;">Please enter the following information</legend>
+				<legend style="display: block; text-align: center;">Edit Info</legend>
+				<p><em style="color: red;">*</em> Edit one or more fields</p>
 				<div class="form-group row-fluid">
-				<form:form action="dogCreated" method="post">
+				<form:form action="dogEdited" method="get">
 					<label for="usr">Name:</label>
-					<input type="text" class="form-control" name="name"><br>
+					<input type="text" class="form-control" value="${updateDog.getName()}" name="name"><br>
 					<label for="usr">Weight (lb):</label>
-					<input type="text" class="form-control" name="weight"><br>
+					<input type="text" class="form-control" value="${updateDog.getWeight()}" name="weight"><br>
 					<label for="usr">Heartbeat (b/min):</label>
-					<input type="text" class="form-control" name="heartbeat"><br>
+					<input type="text" class="form-control" value="${updateDog.getHeartbeat()}" name="heartbeat"><br>
 					<label for="usr">Temperature (C):</label>
-					<input type="text" class="form-control" name="temperature"><br>
+					<input type="text" class="form-control" value="${updateDog.getTemperature()}" name="temperature"><br>
 					<label for="usr">Lat:</label>
-					<input type="text" class="form-control" name="lat"><br>
+					<input type="text" class="form-control" value="${updateDog.getLat()}" name="lat"><br>
 					<label for="usr">Long:</label>
-					<input type="text" class="form-control" name="lon"><br>
-					
-					<div style="text-align: center; display: block;"><input type="submit" class="btn-success" value="Enter" /></div>
-				</form:form>
+					<input type="text" class="form-control" value="${updateDog.getLong()}" name="lon"><br>
+					<input type="hidden" class="form-control" name="id" value="${updateDog.getId()}"/>
+					<div style="text-align: center; display: block;">
+						<input type="submit" class="btn-success" value="Enter" />	
+						<input type="button" class="btn-primary" onclick="location.href='dogs'" value="Cancel"/>					
+					</div>
+				</form:form>				
 				</div>
 				</fieldset>
 			</div>
