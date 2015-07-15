@@ -53,6 +53,12 @@
 					<a href="#" class="close" onclick="$('#msgAlert').hide()">&times;</a>
 					<strong>Success: </strong>${message}
 				</div></c:if>
+				<c:if test="${not empty error}">
+					<div class="alert alert-danger" id="msgAlert">
+					<a href="#" class="close" onclick="$('#msgAlert').hide()">&times;</a>
+					<strong>Error: </strong>${error}
+					</div>
+				</c:if>
 				<fieldset class="fieldset">
 				<legend style="display: block; text-align: center;">Please enter the following information</legend>
 				<div class="form-group row-fluid">

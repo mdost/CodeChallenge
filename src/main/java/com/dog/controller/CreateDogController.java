@@ -50,9 +50,13 @@ public class CreateDogController {
 	@RequestMapping(value = "dogCreated", method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.CREATED)
 	public String createDog(@ModelAttribute CreateDogs dog, BindingResult result, Model model){
-		model.addAttribute("dog", dog);
-		model.addAttribute("message", dog.getName()+" has been entered into the system!");
-		repo.save(dog);
+		if(dog.getName() == null || dog.getWeight() == 0 || dog.getHeartbeat() == 0 || dog.getLat() == 0.0 || dog.getLon() == 0.0){
+			model.addAttribute("error", "one or more fields is empty. Please review the form and fill all informaton.");
+		}else{
+			model.addAttribute("dog", dog);
+			model.addAttribute("message", dog.getName()+" has been entered into the system!");
+			repo.save(dog);
+		}
 		
 		return "createDog";
 	}
@@ -120,7 +124,7 @@ public class CreateDogController {
 			List<CreateDogs> getDogs = repo.getAll();
 			model.addAttribute("listOfDogs", getDogs);
 		}else{
-			model.addAttribute("error", "invalid id, ID # does not exist in the system!");
+			model.addAttribute("error", "There are no dogs registered into system. Please register a dog!");
 		}
 
 		return "map";
