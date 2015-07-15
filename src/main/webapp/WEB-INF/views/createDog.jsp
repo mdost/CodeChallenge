@@ -16,6 +16,23 @@
  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
  
+ <script>
+ function checkform(){
+	 var name = jQuery("#name").val();
+	 var weight = jQuery("#weight").val();
+	 var temperature = jQuery("#temperature").val();
+	 var heartbeat = jQuery("#heartbeat").val();
+	 var lat = jQuery("#lat").val();
+	 var lon = jQuery("#lon").val();
+	 
+	 if(name == null || name == "" || weight == 0 || heartbeat == 0 || temperature == 0 || lat == 0.0 || lon == 0.0){
+		 document.getElementById("error").innerHTML="One or more fields is empty. Please enter value for all fields!"
+		 return false;
+	 }
+	 
+	 return true;
+ }
+ </script>
  <style>
 .fieldset {
   border: 1px solid #ccc;
@@ -59,10 +76,14 @@
 					<strong>Error: </strong>${error}
 					</div>
 				</c:if>
+				<div class="alert alert-danger" id="formMessage">
+					<a href="#" class="close" onclick="$('#msgAlert').hide()">&times;</a>
+					<strong>Error: </strong>
+				</div>
 				<fieldset class="fieldset">
 				<legend style="display: block; text-align: center;">Please enter the following information</legend>
 				<div class="form-group row-fluid">
-				<form:form action="dogCreated" method="post">
+				<form:form action="dogCreated" method="post" onSubmit="return checkform()">
 					<label for="usr">Name:</label>
 					<input type="text" class="form-control" name="name"><br>
 					<label for="usr">Weight (lb):</label>

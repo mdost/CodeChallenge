@@ -50,13 +50,9 @@ public class CreateDogController {
 	@RequestMapping(value = "dogCreated", method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.CREATED)
 	public String createDog(@ModelAttribute CreateDogs dog, BindingResult result, Model model){
-		if(dog.getName() == null || dog.getWeight() == 0 || dog.getHeartbeat() == 0 || dog.getLat() == 0.0 || dog.getLon() == 0.0){
-			model.addAttribute("error", "one or more fields is empty. Please review the form and fill all informaton.");
-		}else{
-			model.addAttribute("dog", dog);
-			model.addAttribute("message", dog.getName()+" has been entered into the system!");
-			repo.save(dog);
-		}
+		model.addAttribute("dog", dog);
+		model.addAttribute("message", dog.getName()+" has been entered into the system!");
+		repo.save(dog);
 		
 		return "createDog";
 	}
