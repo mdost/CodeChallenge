@@ -26,6 +26,7 @@
 	 var lon = jQuery("#lon").val();
 	 
 	 if(name.length ==0 && weight == "" && heartbeat == 0 && temperature == 0 && lat == 0 && lon == 0){
+		 alert("null"+weight+" temp"+temperature);
 		 document.getElementById("formError").innerHTML="<div class='alert alert-danger' id='formMessage'><a href='#' class='close' onclick='$('#msgAlert').hide()'>&times;</a><strong>Error: </strong>One or more fields is empty. Please enter value for all fields!</div>"
 		 return false;
 	 }
