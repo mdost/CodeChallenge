@@ -87,17 +87,17 @@
 				<div class="form-group row-fluid">
 				<form:form action="dogCreated" method="post" onSubmit="return checkform()">
 					<label for="usr">Name:</label>
-					<input type="text" class="form-control" name="name"><br>
+					<input type="text" class="form-control" name="name" id="name"><br>
 					<label for="usr">Weight (lb):</label>
-					<input type="text" class="form-control" name="weight"><br>
+					<input type="text" class="form-control" name="weight" id="weight"><br>
 					<label for="usr">Heartbeat (b/min):</label>
-					<input type="text" class="form-control" name="heartbeat"><br>
+					<input type="text" class="form-control" name="heartbeat" id="heartbeat"><br>
 					<label for="usr">Temperature (C):</label>
-					<input type="text" class="form-control" name="temperature"><br>
+					<input type="text" class="form-control" name="temperature" id="temperature"><br>
 					<label for="usr">Lat:</label>
-					<input type="text" class="form-control" name="lat"><br>
+					<input type="text" class="form-control" name="lat" id="lat"><br>
 					<label for="usr">Long:</label>
-					<input type="text" class="form-control" name="lon"><br>
+					<input type="text" class="form-control" name="lon" id="lon"><br>
 					
 					<div style="text-align: center; display: block;"><input type="submit" class="btn-success" value="Enter" /></div>
 				</form:form>
