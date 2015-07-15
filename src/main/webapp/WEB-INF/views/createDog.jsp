@@ -25,13 +25,25 @@
 	 var lat = jQuery("#lat").val();
 	 var lon = jQuery("#lon").val();
 	 
-	 if(name.length ==0 && weight == "" && heartbeat == 0 && temperature == 0 && lat == 0 && lon == 0){
+	 if(name == null || name == "" || weight == "" || heartbeat == 0 || temperature == 0 || lat == 0 || lon == 0){
 		 alert("null"+weight+" temp"+temperature);
 		 document.getElementById("formError").innerHTML="<div class='alert alert-danger' id='formMessage'><a href='#' class='close' onclick='$('#msgAlert').hide()'>&times;</a><strong>Error: </strong>One or more fields is empty. Please enter value for all fields!</div>"
 		 return false;
 	 }
 	 if(weight %1 !=0){
 		 document.getElementById("formError").innerHTML="<div class='alert alert-danger' id='formMessage'><a href='#' class='close' onclick='$('#msgAlert').hide()'>&times;</a><strong>Error: </strong>Weight must be a int</div>"
+		return false;
+	 }else if(heartbeat %1 != 0){
+		 document.getElementById("formError").innerHTML="<div class='alert alert-danger' id='formMessage'><a href='#' class='close' onclick='$('#msgAlert').hide()'>&times;</a><strong>Error: </strong>Heartbeat must be a int</div>"
+		return false;
+	 }else if(temperature %1 !=0){
+		 document.getElementById("formError").innerHTML="<div class='alert alert-danger' id='formMessage'><a href='#' class='close' onclick='$('#msgAlert').hide()'>&times;</a><strong>Error: </strong>Tempearture must be a int</div>"
+		return false;
+	 }else if(lat %1 ==0){
+		 document.getElementById("formError").innerHTML="<div class='alert alert-danger' id='formMessage'><a href='#' class='close' onclick='$('#msgAlert').hide()'>&times;</a><strong>Error: </strong>Latitude must be a double</div>"
+		return false;
+	 }else if(lon %1 ==0){
+		 document.getElementById("formError").innerHTML="<div class='alert alert-danger' id='formMessage'><a href='#' class='close' onclick='$('#msgAlert').hide()'>&times;</a><strong>Error: </strong>Longitude must be a double</div>"
 		return false;
 	 }
 	 
