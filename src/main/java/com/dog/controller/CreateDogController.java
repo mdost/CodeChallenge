@@ -200,7 +200,7 @@ public class CreateDogController {
 		if(flag== false){
 			model.addAttribute("error", "invalid id, ID # does not exist in the system!");
 		}else{
-			CreateDogs newDog= repo.updateByID(id, updatedDog.getWeight(), updatedDog.getTemperature(),updatedDog.getHeartbeat(),updatedDog.getName(), updatedDog.getLat(),updatedDog.getLong());
+			CreateDogs newDog= repo.updateByID(id, updatedDog.getWeight(), updatedDog.getTemperature(),updatedDog.getHeartbeat(),updatedDog.getName(), updatedDog.getLat(),updatedDog.getLon());
 		
 			//get all dogs from the database, so the user can see the updated change
 			int length = repo.size();

@@ -73,7 +73,7 @@ public class CreateDogs implements Serializable{
 		return this.lat;
 	}
 	
-	public double getLong(){
+	public double getLon(){
 		return this.lon;
 	}
 	
