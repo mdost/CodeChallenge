@@ -37,13 +37,13 @@
 			<c:when test="${not empty filterDogLocation}">
 				var getDog = new Object();
 				
-				getDog.name = '${filterDogLocation.getName()}';
-				getDog.id = '${filterDogLocation.getId()}';
-				getDog.lat = '${filterDogLocation.getLat()}';
-				getDog.lon = '${filterDogLocation.getLong()}';
-				getDog.weight = '${filterDogLocation.getWeight()}';
-				getDog.temperature = '${filterDogLocation.getTemperature()}';
-			    getDog.heartbeat = '${filterDogLocation.getHeartbeat()}';
+				getDog.name = '${filterDogLocation.name}';
+				getDog.id = '${filterDogLocation.id}';
+				getDog.lat = '${filterDogLocation.lat}';
+				getDog.lon = '${filterDogLocation.lon}';
+				getDog.weight = '${filterDogLocation.weight}';
+				getDog.temperature = '${filterDogLocation.temperature}';
+			    getDog.heartbeat = '${filterDogLocation.heartbeat}';
 				
 			    var latLong = new google.maps.LatLng(getDog.lat, getDog.lon);
 			    
@@ -78,13 +78,13 @@
 		<c:forEach items="${listOfDogs}" var="item">
 		    var dog = new Object();
 	
-		    dog.name = '${item.getName()}';
-		    dog.id = '${item.getId()}';
-		    dog.lat = '${item.getLat()}';
-		    dog.lon = '${item.getLong()}';
-		    dog.weight = '${item.getWeight()}';
-		    dog.temperature = '${item.getTemperature()}';
-		    dog.heartbeat = '${item.getHeartbeat()}';
+		    dog.name = '${item.name}';
+		    dog.id = '${item.id}';
+		    dog.lat = '${item.lat}';
+		    dog.lon = '${item.lon}';
+		    dog.weight = '${item.weight}';
+		    dog.temperature = '${item.temperature}';
+		    dog.heartbeat = '${item.heartbeat}';
 		    
 		    dogs.push(dog);
 		</c:forEach>
@@ -152,12 +152,11 @@
 		<div class="container-fluid">
 			<div class="navbar-header">
 				<a class="navbar-brand" href="#">
-<!-- 				<img src="DVI_Logo_footer.png" class="img-rounded" width="70px" height="25px">
- -->				</a>
+				</a>
 			</div>
 			<div>
 				<ul class="nav navbar-nav">
-				<li><a href="/controller">Home</a></li>
+				<li><a href="/">Home</a></li>
 				<li><a href="createDog.html">Register Dog</a></li>
 				<li><a href="dogs">List of Dogs</a></li>
 				<li class="active"><a href="map.html">Maps</a></li>

@@ -31,7 +31,7 @@
 			</div>
 			<div>
 				<ul class="nav navbar-nav">
-				<li><a href="/controller">Home</a></li>
+				<li><a href="/">Home</a></li>
 				<li><a href="createDog.html">Register Dog</a></li>
 				<li><a href="dogs">List of Dogs</a></li>
 				<li><a href="map.html">Maps</a></li>
@@ -48,6 +48,12 @@
 				<a href="#" class="close" onclick="$('#deleted').hide()">&times;</a>
 				<strong>Success: </strong>${deletedDog}
 				</div>
+			</c:if>
+			<c:if test="${not empty error}">
+			<div class="alert alert-danger" id="msgAlert">
+				<a href="#" class="close" onclick="$('#msgAlert').hide()">&times;</a>
+				<strong>Error: </strong>${error}
+			</div>
 			</c:if>
 			<div style="display: block; text-align: center;">
 			<h3>K-Means Clustering Algorithm</h3><br>
