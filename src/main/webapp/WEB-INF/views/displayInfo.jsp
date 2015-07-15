@@ -86,7 +86,7 @@ function submitForm() {
 		<c:if test="${not empty updatedDog}">
 			<div class="alert alert-success" id="updated">
 				<a href="#" class="close" onclick="$('#updated').hide()">&times;</a>
-				<strong>Success: </strong>${updatedDog.getName()} has been updated!
+				<strong>Success: </strong>${updatedDog.getName} has been updated!
 			</div>
 		</c:if>
 		
@@ -123,24 +123,24 @@ function submitForm() {
 				</tr>
 			</thead>
 			<tr>
-				<td><c:out value="${dogId.getId()}"/></td>
-				<td><c:out value="${dogId.getName()}"/></td>
-				<td><c:out value="${dogId.getHeartbeat()}"/></td>
-				<td><c:out value="${dogId.getWeight()}"/></td>
-				<td><c:out value="${dogId.getTemperature()}"/></td>
-				<td><c:out value="${dogId.getLat()}"/></td>
-				<td><c:out value="${dogId.getLong()}"/></td>
+				<td><c:out value="${dogId.getId}"/></td>
+				<td><c:out value="${dogId.getName}"/></td>
+				<td><c:out value="${dogId.getHeartbeat}"/></td>
+				<td><c:out value="${dogId.getWeight}"/></td>
+				<td><c:out value="${dogId.getTemperature}"/></td>
+				<td><c:out value="${dogId.getLat}"/></td>
+				<td><c:out value="${dogId.getLong}"/></td>
 				
 				<td>
 					<div class="row">
 					<div class="col-md-3">
 					<form:form action="edit" method="get">
-					<input type="hidden" name="dogID" value="${dogId.getId()}"/>
+					<input type="hidden" name="dogID" value="${dogId.getId}"/>
 					<input type="submit" class="btn-info" value="Edit" name="edit" id="edit"/>
 					</form:form></div>
 					
 					<div class="col-md-3"><form:form action="delete" method="get">
-					<input type="hidden" name="id" value="${dogId.getId()}"/>
+					<input type="hidden" name="id" value="${dogId.getId}"/>
 					<input type="submit" class="btn-danger"  value="Delete" name="delete" id="delete"/>
 					</form:form></div></div>
 				</td>				
@@ -165,25 +165,25 @@ function submitForm() {
 			</thead>
 			<c:forEach items="${listOfDogs}" var="listDog">
 				<tr>
-					<td><c:out value="${listDog.getId()}"/></td>
-					<td><c:out value="${listDog.getName()}"/></td>
-					<td><c:out value="${listDog.getHeartbeat()}"/></td>
+					<td><c:out value="${listDog.getId}"/></td>
+					<td><c:out value="${listDog.getName}"/></td>
+					<td><c:out value="${listDog.getHeartbeat}"/></td>
 					<td><c:out value="${listDog.getWeight()}"/></td>
-					<td><c:out value="${listDog.getTemperature()}"/></td>
-					<td><c:out value="${listDog.getLat()}"/></td>
-					<td><c:out value="${listDog.getLong()}"/></td>
+					<td><c:out value="${listDog.getTemperature}"/></td>
+					<td><c:out value="${listDog.getLat}"/></td>
+					<td><c:out value="${listDog.getLong}"/></td>
 					
 					
 					<td>
 					<div class="row">
 					<div class="col-md-3">
 					<form:form action="edit" method="get">
-					<input type="hidden" name="dogID" value="${listDog.getId()}"/>
+					<input type="hidden" name="dogID" value="${listDog.getId}"/>
 					<input type="submit" class="btn-info" value="Edit" name="edit" id="edit"/>
 					</form:form></div>
 					
 					<div class="col-md-3"><form:form action="delete" method="get">
-					<input type="hidden" name="id" value="${listDog.getId()}"/>
+					<input type="hidden" name="id" value="${listDog.getId}"/>
 					<input type="submit" class="btn-danger"  value="Delete" name="delete" id="delete"/>
 					</form:form></div></div>
 					</td>
