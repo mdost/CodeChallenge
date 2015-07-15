@@ -86,7 +86,7 @@ function submitForm() {
 		<c:if test="${not empty updatedDog}">
 			<div class="alert alert-success" id="updated">
 				<a href="#" class="close" onclick="$('#updated').hide()">&times;</a>
-				<strong>Success: </strong>${updatedDog.getName} has been updated!
+				<strong>Success: </strong>${updatedDog.name} has been updated!
 			</div>
 		</c:if>
 		
@@ -124,12 +124,12 @@ function submitForm() {
 			</thead>
 			<tr>
 				<td><c:out value="${dogId.id}"/></td>
-				<td><c:out value="${dogId.getName}"/></td>
-				<td><c:out value="${dogId.getHeartbeat}"/></td>
-				<td><c:out value="${dogId.getWeight}"/></td>
-				<td><c:out value="${dogId.getTemperature}"/></td>
-				<td><c:out value="${dogId.getLat}"/></td>
-				<td><c:out value="${dogId.getLong}"/></td>
+				<td><c:out value="${dogId.name}"/></td>
+				<td><c:out value="${dogId.heartbeat}"/></td>
+				<td><c:out value="${dogId.weight}"/></td>
+				<td><c:out value="${dogId.temperature}"/></td>
+				<td><c:out value="${dogId.lat}"/></td>
+				<td><c:out value="${dogId.lon}"/></td>
 				
 				<td>
 					<div class="row">
@@ -166,12 +166,12 @@ function submitForm() {
 			<c:forEach items="${listOfDogs}" var="listDog">
 				<tr>
 					<td><c:out value="${listDog.id}"/></td>
-					<td><c:out value="${listDog.getName}"/></td>
-					<td><c:out value="${listDog.getHeartbeat}"/></td>
-					<td><c:out value="${listDog.getWeight}"/></td>
-					<td><c:out value="${listDog.getTemperature}"/></td>
-					<td><c:out value="${listDog.getLat}"/></td>
-					<td><c:out value="${listDog.getLong}"/></td>
+					<td><c:out value="${listDog.name}"/></td>
+					<td><c:out value="${listDog.heartbeat}"/></td>
+					<td><c:out value="${listDog.weight}"/></td>
+					<td><c:out value="${listDog.temperature}"/></td>
+					<td><c:out value="${listDog.lat}"/></td>
+					<td><c:out value="${listDog.lon}"/></td>
 					
 					
 					<td>
