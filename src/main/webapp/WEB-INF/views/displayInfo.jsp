@@ -168,7 +168,7 @@ function submitForm() {
 					<td><c:out value="${listDog.getId}"/></td>
 					<td><c:out value="${listDog.getName}"/></td>
 					<td><c:out value="${listDog.getHeartbeat}"/></td>
-					<td><c:out value="${listDog.getWeight()}"/></td>
+					<td><c:out value="${listDog.getWeight}"/></td>
 					<td><c:out value="${listDog.getTemperature}"/></td>
 					<td><c:out value="${listDog.getLat}"/></td>
 					<td><c:out value="${listDog.getLong}"/></td>
