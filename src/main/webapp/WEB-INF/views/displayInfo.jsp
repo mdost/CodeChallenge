@@ -60,7 +60,7 @@ function submitForm() {
 			</div>
 			<div>
 				<ul class="nav navbar-nav">
-				<li><a href="/controller">Home</a></li>
+				<li><a href="/">Home</a></li>
 				<li><a href="createDog.html">Register Dog</a></li>
 				<li class="active"><a href="dogs">List of Dogs</a></li>
 				<li><a href="map.html">Maps</a></li>

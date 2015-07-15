@@ -85,13 +85,13 @@
 				<c:forEach var="column" items="${row}">
 					<c:if test="${column != null}">
 					<tr>
-					<td>${column.getId()}</td>
-					<td>${column.getName()}</td>
-					<td>${column.getTemperature()}</td>
-					<td>${column.getHeartbeat()}</td>
-					<td>${column.getLat()}</td>
-					<td>${column.getLong()}</td>
-					<td>${column.getWeight()}</td>
+					<td>${column.id}</td>
+					<td>${column.name}</td>
+					<td>${column.temperature}</td>
+					<td>${column.heartbeat}</td>
+					<td>${column.lat}</td>
+					<td>${column.lon}</td>
+					<td>${column.weight}</td>
 					<td>${count}</td>
 					</tr>
 					</c:if>

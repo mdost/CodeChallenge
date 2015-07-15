@@ -61,18 +61,18 @@
 				<div class="form-group row-fluid">
 				<form:form action="dogEdited" method="get">
 					<label for="usr">Name:</label>
-					<input type="text" class="form-control" value="${updateDog.getName()}" name="name"><br>
+					<input type="text" class="form-control" value="${updateDog.name}" name="name"><br>
 					<label for="usr">Weight (lb):</label>
-					<input type="text" class="form-control" value="${updateDog.getWeight()}" name="weight"><br>
+					<input type="text" class="form-control" value="${updateDog.weight}" name="weight"><br>
 					<label for="usr">Heartbeat (b/min):</label>
-					<input type="text" class="form-control" value="${updateDog.getHeartbeat()}" name="heartbeat"><br>
+					<input type="text" class="form-control" value="${updateDog.heartbeat}" name="heartbeat"><br>
 					<label for="usr">Temperature (C):</label>
-					<input type="text" class="form-control" value="${updateDog.getTemperature()}" name="temperature"><br>
+					<input type="text" class="form-control" value="${updateDog.temperature}" name="temperature"><br>
 					<label for="usr">Lat:</label>
-					<input type="text" class="form-control" value="${updateDog.getLat()}" name="lat"><br>
+					<input type="text" class="form-control" value="${updateDog.lat}" name="lat"><br>
 					<label for="usr">Long:</label>
-					<input type="text" class="form-control" value="${updateDog.getLong()}" name="lon"><br>
-					<input type="hidden" class="form-control" name="id" value="${updateDog.getId()}"/>
+					<input type="text" class="form-control" value="${updateDog.lon}" name="lon"><br>
+					<input type="hidden" class="form-control" name="id" value="${updateDog.id}"/>
 					<div style="text-align: center; display: block;">
 						<input type="submit" class="btn-success" value="Enter" />	
 						<input type="button" class="btn-primary" onclick="location.href='dogs'" value="Cancel"/>					
