@@ -28,7 +28,7 @@
 	 if(name == null || name == "" || weight == 0 || heartbeat == 0 || temperature == 0 || lat == 0.0 || lon == 0.0){
 		 document.getElementById("formError").innerHTML="<div class='alert alert-danger' id='formMessage'><a href='#' class='close' onclick='$('#msgAlert').hide()'>&times;</a><strong>Error: </strong>One or more fields is empty. Please enter value for all fields!</div>"
 		 return false;
-	 }else if(weight != parseInt(weight, 10)){
+	 }else if(weight %1 ==0){
 		 document.getElementById("formError").innerHTML="<div class='alert alert-danger' id='formMessage'><a href='#' class='close' onclick='$('#msgAlert').hide()'>&times;</a><strong>Error: </strong>Weight must be a int</div>"
 		return false;
 	 }
